@@ -1,0 +1,26 @@
+START TRANSACTION;
+
+-- DROPPING AND CREATING TABLE FOR A LIBRARY MANAGEMENT SYSTEM --
+
+DROP TABLE IF EXISTS departments,courses,materials;
+
+
+CREATE TABLE departments (
+dept_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+dept_name VARCHAR(20) 
+);
+
+CREATE TABLE courses(
+course_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+course_name VARCHAR(40),
+dept_id INT NOT NULL REFERENCES departments(dept_id)
+);
+
+CREATE TABLE materials(
+material_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+material_type VARCHAR(20) DEFAULT 'BOOK',
+availability BOOLEAN DEFAULT TRUE,
+dept_id INT NOT NULL REFERENCES departments(dept_id)
+);
+
+COMMIT;
